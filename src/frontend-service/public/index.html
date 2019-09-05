@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto+Mono|Roboto:300,400,500,700">
+  <link rel=icon href="https://storage.googleapis.com/cloudcode-static/cloud-code-logo.png">
+  <title>Cloud Code Voting App</title>
+  <style>
+    body { height: 100%; margin: 0; font-family: 'Google Sans', Roboto, sans-serif; color: #3c4043; box-sizing: border-box; } #logo { display: block; width: 128px; margin: 28px auto 72px; } .card { box-sizing: border-box; max-width: 490px; padding: 48px; margin: 1em auto; border-radius: 8px; box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 2px 6px 2px rgba(60,64,67,0.15); } .option { font-size: 28px; font-weight: 400; color: #3c4043; display: flex; cursor: pointer; user-select: none; } .option > * { pointer-events: none; } .checkbox { width: 24px; height: 24px; border-radius: 2px; margin-right: 24px; background-color: transparent; transition: border-color 90ms cubic-bezier(0,0,.2,.1); border: 2px solid rgba(0,0,0,.54); } .checkbox svg { display: block; } .checkbox svg .checkmark-path { stroke-width: 2.5px; } .option.selected { color: #1a73e8; } .option.selected .checkbox { border-color: #1a73e8; } .option.selected .checkmark-path { stroke: #1a73e8; } .submit-btn { display: inline-block; background: #1a73e8; border-color: #1A73E8; color: #fff; margin: 2em 0 1em; padding: 12px 24px; border-radius: 4px; font-weight: 500; position: relative; overflow: hidden; transform: translate3d(0, 0, 0); cursor: pointer; } .submit-btn::after { content: ""; display: block; position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; background-image: radial-gradient(circle, rgba(255,255,255,0.3) 10%, transparent 10.01%); background-repeat: no-repeat; background-position: 50%; transform: scale(10, 10); opacity: 0; transition: transform .5s, opacity 1s; } .submit-btn:active:after { transform: scale(0, 0); opacity: .3; transition: 0s; } .thanks { display: none; } .thanks a { color: #1A73E8; text-decoration: none; } .thanks a:hover { text-decoration: underline; } .error { text-align: center; color: #C62828; } @media (max-width: 425px) { #logo { margin-bottom: 0; } h1{ font-size: 24px; } .option{ font-size: 18px; margin-bottom: 24px; } .checkbox { width: 18px; height: 18px; margin-right: 8px;}  .card { width: 95%; padding: 24px; box-shadow: none; margin: 0 auto; } }
+  </style>
+</head>
+<body>
+  <svg id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="45"> <defs> <path id="a" d="M0 45h127.8944V.0665H0z"/> </defs> <g fill="none" fill-rule="evenodd"> <path fill="#EA4335" d="M34 23h27v-6H34zM34 45h27v-6H34zM34 34h27v-6H34z"/> <g> <path fill="#FBBC05" d="M94.4256 18.0413V16.871H88.521v1.1702c0 4.408-3.5315 7.9937-7.8721 7.9937-4.341 0-7.8726-3.5856-7.8726-7.9937V16.871H66.872v1.1702c0 5.726 3.4067 10.6569 8.2693 12.8192-4.8626 2.1622-8.2693 7.093-8.2693 12.819v1.1698h5.9043v-1.1697c0-4.4079 3.5316-7.9938 7.8726-7.9938 4.3406 0 7.872 3.586 7.872 7.9938v1.1697h5.9046v-1.1697c0-5.726-3.407-10.6569-8.2696-12.819 4.8626-2.1624 8.2696-7.0933 8.2696-12.8193"/> <mask id="b" fill="#fff"> <use xlink:href="#a"/> </mask> <path fill="#34A853" d="M111.1601 45h5.9062V26.4085h-5.9062zM100.3322 23.8095h27.5622v-6.7969h-27.5622z" mask="url(#b)"/> <path fill="#4285F4" d="M27.5618 44.9321V16.9452h-5.9087V38.932L-.0001 16.9454v27.9999h27.5619z" mask="url(#b)"/> <path fill="#5F6368" d="M29.288 5.749l2.41-1.0161c-.0679-.1728-.194-.3126-.3779-.42-.1836-.107-.3915-.1607-.6228-.1607-.3472 0-.6725.145-.9752.4354-.3031.2904-.4479.6776-.4342 1.1614zm1.501 2.8206c-.7623 0-1.3988-.2628-1.9094-.7882-.5106-.5252-.7658-1.175-.7658-1.9496 0-.8016.2465-1.4584.7401-1.97.4936-.5115 1.0945-.7673 1.8026-.7673.3265 0 .6297.0605.9088.1814.279.1211.5106.2767.6942.4668.184.1903.3305.375.4394.5546.1089.18.1973.3595.2654.5392l.1226.3112-3.605 1.514c.2791.5529.715.8294 1.3071.8294.5448 0 .9872-.2523 1.3276-.7569l.9191.6221c-.2043.3112-.4936.591-.868.84-.3745.2489-.834.3733-1.3787.3733zm-4.4317-.166h1.1846V.3568h-1.1846v8.0466zm-3.2987-.9125c.4087 0 .7508-.157 1.0266-.4718.2755-.3145.4134-.7069.4134-1.177 0-.477-.1379-.8743-.4134-1.1925-.2758-.3176-.6179-.4768-1.0266-.4768-.4151 0-.7692.1592-1.062.4768-.2928.3182-.4391.7155-.4391 1.1925 0 .4701.1463.8625.4391 1.177.2928.3147.6469.4718 1.062.4718zm-.0816 3.5358c-.599 0-1.103-.1623-1.5115-.4873-.4083-.325-.7013-.7016-.878-1.1303l1.0315-.4354c.1087.2628.2789.4907.5103.6843.2313.1934.5142.2904.8477.2904.4493 0 .8017-.1384 1.057-.4146.2553-.2767.3828-.674.3828-1.1927v-.394h-.0407c-.3338.4148-.807.6223-1.4196.6223-.6876 0-1.2901-.2661-1.8073-.7987-.5177-.5321-.7763-1.175-.7763-1.9286 0-.7604.2586-1.4084.7763-1.9443.5172-.5354 1.1197-.8035 1.8073-.8035.3062 0 .5837.0589.8324.1761.2484.1178.4443.2629.5872.4357h.0407v-.446h1.1235v4.9151c0 .954-.2402 1.6676-.7201 2.1413-.4797.4735-1.0945.7102-1.8432.7102zm-6.8726-4.0076c.2996.3147.6567.4718 1.072.4718.4154 0 .7728-.157 1.0724-.4718.2996-.3145.4493-.7104.4493-1.1875 0-.4837-.148-.8813-.4444-1.1923-.2958-.3111-.655-.4665-1.0772-.4665-.4222 0-.781.1554-1.0773.4665-.296.311-.4441.7086-.4441 1.1923 0 .477.1497.873.4493 1.1875zm2.992.7674c-.5242.522-1.1642.783-1.92.783-.7554 0-1.3957-.261-1.9195-.783-.5245-.5218-.7863-1.1736-.7863-1.9549 0-.781.2618-1.4323.7863-1.9546.5238-.5218 1.164-.7827 1.9196-.7827.7557 0 1.3957.2609 1.92.7827.524.5223.7864 1.1736.7864 1.9546 0 .7813-.2624 1.433-.7864 1.9549zm-8.8946-.7674c.2996.3147.657.4718 1.0723.4718.4151 0 .7725-.157 1.0723-.4718.2994-.3145.4493-.7104.4493-1.1875 0-.4837-.1483-.8813-.4443-1.1923-.2961-.3111-.6554-.4665-1.0773-.4665-.4222 0-.7812.1554-1.0773.4665-.2963.311-.4443.7086-.4443 1.1923 0 .477.1497.873.4493 1.1875zm2.9923.7674c-.5245.522-1.1645.783-1.92.783-.7558 0-1.3958-.261-1.92-.783-.5243-.5218-.7862-1.1736-.7862-1.9549 0-.781.262-1.4323.7862-1.9546.5242-.5218 1.1642-.7827 1.92-.7827.7555 0 1.3955.2609 1.92.7827.524.5223.7861 1.1736.7861 1.9546 0 .7813-.262 1.433-.7861 1.9549zm-8.9461.783c-1.1572 0-2.1543-.4166-2.9919-1.2498C.4186 6.4872 0 5.4864 0 4.3181S.4186 2.1492 1.256 1.316C2.0937.4832 3.0908.0664 4.248.0664c1.1098 0 2.0664.3907 2.8697 1.1717l-.8069.8194c-.5787-.553-1.266-.8297-2.0628-.8297-.837 0-1.5468.3007-2.129.9022-.5821.6015-.873 1.3308-.873 2.188 0 .8574.2909 1.5862.873 2.188.5822.6013 1.292.9021 2.129.9021.8512 0 1.5558-.2834 2.114-.8504.3336-.3387.5412-.826.623-1.462H4.248V3.9344h3.8499c.041.2073.0615.4493.0615.726 0 1.1405-.3302 2.046-.9905 2.7165-.7491.7951-1.7227 1.1927-2.9209 1.1927zM39.3059 8.5696c-1.0757 0-1.9778-.3699-2.706-1.1097-.7286-.7394-1.0928-1.6626-1.0928-2.7687 0-1.1059.3642-2.0289 1.0928-2.7685.7282-.7396 1.6303-1.1097 2.706-1.1097 1.103 0 1.9982.4046 2.6858 1.2134l-.6536.6429c-.497-.629-1.1742-.9436-2.0322-.9436-.7966 0-1.4689.2731-2.017.8194-.548.546-.822 1.2616-.822 2.146 0 .8852.274 1.6007.822 2.147.5481.5459 1.2204.819 2.017.819.8783 0 1.627-.3595 2.2467-1.0786l.6536.6638c-.3337.4079-.7524.731-1.2561.9694-.504.2384-1.0519.3579-1.6442.3579M43.0436 8.4035h.9394V.979h-.9394zM46.2142 7.1956c.3232.3353.7063.5029 1.149.5029.4424 0 .8253-.1676 1.1487-.503.3234-.335.4851-.7793.4851-1.3322 0-.5532-.1617-.9972-.4851-1.3328-.3234-.335-.7063-.5029-1.1487-.5029-.4427 0-.8258.1678-1.149.503-.3234.3355-.485.7795-.485 1.3327 0 .553.1616.9972.485 1.3323m-.6996-3.2664c.4835-.5148 1.0994-.7726 1.8486-.7726.7489 0 1.3648.2578 1.8483.7726.4835.5151.7251 1.1597.7251 1.934 0 .7742-.2416 1.4188-.725 1.9339-.4836.5149-1.0995.7724-1.8484.7724-.7492 0-1.3651-.2575-1.8486-.7724-.4835-.5151-.7249-1.1597-.7249-1.9338 0-.7744.2414-1.419.725-1.934M55.1346 8.4036h-.8988v-.7052h-.0408c-.1431.242-.3611.4477-.6537.6171-.2925.1692-.6023.254-.929.254-.6265 0-1.1013-.1934-1.4247-.5807-.3234-.387-.4851-.9058-.4851-1.5554v-3.111h.9396v2.9557c0 .9469.4118 1.4203 1.2356 1.4203.388 0 .7046-.1587.9498-.477.245-.3179.3675-.6843.3675-1.099v-2.8h.9396v5.0812zM58.474 7.6984c.4424 0 .8186-.1659 1.1281-.4979.31-.3315.4649-.7774.4649-1.3373s-.155-1.006-.4649-1.3378c-.3095-.3318-.6857-.4976-1.1282-.4976-.4358 0-.8104.1675-1.1235.5029-.3132.3353-.4695.7793-.4695 1.3325s.1563.9972.4695 1.3323c.313.3353.6877.5029 1.1235.5029m-.1532.8713c-.647 0-1.205-.2593-1.6749-.778-.4698-.5184-.7045-1.1611-.7045-1.9285 0-.7676.2347-1.4106.7045-1.9288.4699-.5184 1.0278-.778 1.6749-.778.3812 0 .7232.0831 1.0263.249.3027.1659.529.3734.6792.6224h.0408l-.0408-.7052V.979h.9394v7.4245h-.8986v-.7051h-.0408c-.1502.249-.3765.4562-.6792.6223-.3031.1659-.6451.249-1.0263.249" mask="url(#b)"/> </g> </g> </svg>
+  <h2 class="error"></h2>
+  <div class="card">
+    <h1 class="title">Which of these features do you want next?</h1>
+    <div class="survey">
+    </div>
+    <div class="submit-btn">Submit</div>
+    <h2 class="thanks">Thanks for voting! <br>Checkout the <a href="/results">results</a>.</h2>
+  </div>
+
+  <script>
+    const optionData = ['Helm', 'Kustomize', 'CRD', 'Jib', 'None of the above'];
+    const title = document.querySelector('.title');
+    const error = document.querySelector('.error');
+    const survey = document.querySelector('.survey');
+    const thanks = document.querySelector('.thanks');
+    const submitBtn = document.querySelector('.submit-btn');
+    let options;
+
+    function generateOption(nameStr, addClass) {
+      return `<div class="option${addClass ? ' '+addClass:''}" onclick="clickHandler(event)">
+        <div class="checkbox"> <svg xml:space="preserve" focusable="false" version="1.1" viewBox="0 0 24 24"> <path class="checkmark-path" d="M4.1,12.7 9,17.6 20.3,6.3" fill="none"></path> </svg> </div>
+        ${nameStr}
+      </div>`;
+    }
+
+    function init() {
+      optionData.forEach( (name) => {
+        let customClass = name.split(' ').join('');
+        survey.innerHTML += generateOption(name, customClass);
+      });
+
+      options = document.querySelectorAll('.option');
+    }
+
+    function clickHandler(event) {
+      let el = event.target;
+      if (el.classList.contains('selected')) {
+        el.classList.remove('selected');
+      } else {
+        if(el.classList.contains('Noneoftheabove')) {
+          options.forEach( el => el.classList.remove('selected') );
+        }
+        else {
+          document.querySelector('.Noneoftheabove').classList.remove('selected');
+        }
+        el.classList.add('selected');
+      }
+    }
+
+    submitBtn.addEventListener('click', () => {
+      if (submitBtn.classList.contains('loading')) return;
+      submitBtn.classList.add('loading');
+
+      const url = '/vote';
+      const votes = {};
+
+      options.forEach((el) => {
+        if (el.classList.contains('selected')) {
+          votes[el.innerText] = 1;
+        }
+      });
+
+      if(Object.keys(votes).length == 0) {
+        votes['None of the above'] = 1;
+      }
+
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(votes),
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8'
+        },
+      }).then((response) => {
+        submitBtn.classList.remove('loading');
+        if (response.ok) {
+          error.innerText = '';
+          survey.style.display = 'none';
+          title.style.display = 'none';
+          submitBtn.style.display = 'none';
+          thanks.style.display = 'block';
+        } else {
+          error.innerText = `Error: Request failed with Status Code: ${response.status}`;
+        }
+      });
+    });
+
+    init();
+  </script>
+</body>
+</html>
+

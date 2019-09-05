@@ -1,0 +1,22 @@
+apiVersion: skaffold/v1beta7
+kind: Config
+build:
+  artifacts:
+    - image: frontend-image
+      context: src/frontend-service
+    - image: voting-image
+      context: src/voting-service
+  tagPolicy:
+    sha256: {}
+  local:
+    useBuildkit: false
+    useDockerCLI: false
+deploy:
+  kubectl:
+    manifests:
+      - kubernetes-manifests/*.yaml
+profiles:
+  - build:
+      googleCloudBuild: {}
+    deploy: {}
+    name: gke
