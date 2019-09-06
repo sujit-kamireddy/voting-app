@@ -29,7 +29,7 @@ kind: Service
 metadata:
   name: voting-service
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: voting
   ports:

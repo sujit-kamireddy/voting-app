@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "podSelector": {
+                "app": "frontend"
+            },
+            "type": "cloudcode",
+            "language": "Node",
+            "request": "attach",
+            "debugPort": 9229,
+            "localRoot": "${workspaceFolder}/src/frontend-service",
+            "remoteRoot": "/app",
+            "name": "Debug Frontend on Kubernetes",
+
+        },
+        {
+            "podSelector": {
+                "app": "voting"
+            },
+            "type": "cloudcode",
+            "language": "Node",
+            "request": "attach",
+            "debugPort": 9229,
+            "localRoot": "${workspaceFolder}/src/voting-service",
+            "remoteRoot": "/app",
+            "name": "Debug Backend on Kubernetes",
+
+        }
+    ]
+}
